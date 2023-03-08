@@ -1,5 +1,4 @@
 import React from "react";
-import { useColorScheme } from "react-native";
 import Icon, { IconType } from "react-native-dynamic-vector-icons";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
@@ -9,22 +8,15 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
  * ? Local & Shared Imports
  */
 import { SCREENS } from "@shared-constants";
-import { DarkTheme, LightTheme, palette } from "@theme/themes";
-// ? Screens
+import { palette } from "@theme/themes";
+
 import HomeScreen from "@screens/home/HomeScreen";
-import SearchScreen from "@screens/search/SearchScreen";
-import DetailScreen from "@screens/detail/DetailScreen";
-import ProfileScreen from "@screens/profile/ProfileScreen";
-import NotificationScreen from "@screens/notification/NotificationScreen";
 
 // ? If you want to use stack or tab or both
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const Navigation = () => {
-  const scheme = useColorScheme();
-  const isDarkMode = scheme === "dark";
-
   React.useEffect((): any => {
     return () => (isReadyRef.current = false);
   }, []);
@@ -72,18 +64,12 @@ const Navigation = () => {
             renderTabIcon(route, focused, color, size),
           tabBarActiveTintColor: palette.primary,
           tabBarInactiveTintColor: "gray",
-          tabBarStyle: {
-            backgroundColor: isDarkMode ? palette.black : palette.white,
-          },
         })}
       >
         <Tab.Screen name={SCREENS.HOME} component={HomeScreen} />
-        <Tab.Screen name={SCREENS.SEARCH} component={SearchScreen} />
-        <Tab.Screen
-          name={SCREENS.NOTIFICATION}
-          component={NotificationScreen}
-        />
-        <Tab.Screen name={SCREENS.PROFILE} component={ProfileScreen} />
+        <Tab.Screen name={SCREENS.SEARCH} component={HomeScreen} />
+        <Tab.Screen name={SCREENS.NOTIFICATION} component={HomeScreen} />
+        <Tab.Screen name={SCREENS.PROFILE} component={HomeScreen} />
       </Tab.Navigator>
     );
   };
@@ -94,13 +80,9 @@ const Navigation = () => {
       onReady={() => {
         isReadyRef.current = true;
       }}
-      theme={isDarkMode ? DarkTheme : LightTheme}
     >
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name={SCREENS.HOME} component={renderTabNavigation} />
-        <Stack.Screen name={SCREENS.DETAIL}>
-          {(props) => <DetailScreen {...props} />}
-        </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
