@@ -15,10 +15,8 @@ const App = () => {
   const isDarkMode = scheme === "dark";
 
   React.useEffect(() => {
-    StatusBar.setBarStyle(isDarkMode ? "light-content" : "dark-content");
     if (isAndroid) {
-      StatusBar.setBackgroundColor("rgba(0,0,0,0)");
-      StatusBar.setTranslucent(true);
+      StatusBar.setHidden(true);
     }
 
     setTimeout(() => {

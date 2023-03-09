@@ -1,14 +1,19 @@
 import React from "react";
-import Icon, { IconType } from "react-native-dynamic-vector-icons";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { isReadyRef, navigationRef } from "react-navigation-helpers";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import RNBounceable from "@freakycoder/react-native-bounceable";
 /**
  * ? Local & Shared Imports
  */
 import { SCREENS } from "@shared-constants";
 import { palette } from "@theme/themes";
+
+import CherrySvg from "@assets/icons/cherry.svg";
+import Home2Svg from "@assets/icons/home-2.svg";
+import TrophySvg from "@assets/icons/trophy.svg";
+import LighteningSvg from "@assets/icons/lightening.svg";
 
 import HomeScreen from "@screens/home/HomeScreen";
 
@@ -21,38 +26,39 @@ const Navigation = () => {
     return () => (isReadyRef.current = false);
   }, []);
 
-  const renderTabIcon = (
-    route: any,
-    focused: boolean,
-    color: string,
-    size: number,
-  ) => {
-    let iconName = "home";
-    switch (route.name) {
+  const renderTabIcon = (routeName: string) => {
+    switch (routeName) {
       case SCREENS.HOME:
-        iconName = focused ? "home" : "home-outline";
-        break;
+        return (
+          <RNBounceable>
+            <CherrySvg />
+          </RNBounceable>
+        );
       case SCREENS.SEARCH:
-        iconName = focused ? "search" : "search-outline";
-        break;
+        return (
+          <RNBounceable>
+            <Home2Svg />
+          </RNBounceable>
+        );
       case SCREENS.NOTIFICATION:
-        iconName = focused ? "notifications" : "notifications-outline";
-        break;
+        return (
+          <RNBounceable>
+            <TrophySvg />
+          </RNBounceable>
+        );
       case SCREENS.PROFILE:
-        iconName = focused ? "person" : "person-outline";
-        break;
+        return (
+          <RNBounceable>
+            <LighteningSvg />
+          </RNBounceable>
+        );
       default:
-        iconName = focused ? "home" : "home-outline";
-        break;
+        return (
+          <RNBounceable>
+            <CherrySvg />
+          </RNBounceable>
+        );
     }
-    return (
-      <Icon
-        name={iconName}
-        type={IconType.Ionicons}
-        size={size}
-        color={color}
-      />
-    );
   };
 
   const renderTabNavigation = () => {
@@ -60,10 +66,21 @@ const Navigation = () => {
       <Tab.Navigator
         screenOptions={({ route }) => ({
           headerShown: false,
-          tabBarIcon: ({ focused, color, size }) =>
-            renderTabIcon(route, focused, color, size),
-          tabBarActiveTintColor: palette.primary,
-          tabBarInactiveTintColor: "gray",
+          tabBarShowLabel: false,
+          tabBarIcon: () => renderTabIcon(route.name),
+          tabBarStyle: {
+            borderTopWidth: 1,
+            borderTopColor: palette.black,
+            shadowColor: "#fff",
+            shadowOffset: {
+              width: -10,
+              height: -10,
+            },
+            shadowOpacity: 0.5,
+            height: 65,
+            elevation: 1,
+            backgroundColor: palette.bottomTab,
+          },
         })}
       >
         <Tab.Screen name={SCREENS.HOME} component={HomeScreen} />

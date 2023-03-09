@@ -9,7 +9,7 @@ const MenuButton = () => (
     <Icon
       name="menu"
       type={IconType.Ionicons}
-      color={palette.iconBlack}
+      color={palette.white}
       size={30}
     />
   </RNBounceable>

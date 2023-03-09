@@ -1,13 +1,13 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-// import RNBounceable from "@freakycoder/react-native-bounceable";
 
-// import MockData from "./mock/MockData";
 import MainLayout from "@shared-components/layout/MainLayout";
-
-import Text from "@shared-components/text-wrapper/TextWrapper";
-// import fonts from "@fonts";
 import { palette } from "@theme/themes";
+import SelectGameCategory from "./components/SelectGameCategory";
+import MostPopularGame from "./components/MostPopularGame";
+import Recommended from "./components/Recommended";
+import MassiveRewards from "./components/MassiveRewards";
+import { gameCategories } from "./mock/MockData";
 
 interface HomeScreenProps {}
 
@@ -15,7 +15,10 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
   return (
     <MainLayout>
       <View style={styles.container}>
-        <Text>This is Home Screen</Text>
+        <SelectGameCategory gameCategories={gameCategories} />
+        <MostPopularGame />
+        <Recommended />
+        <MassiveRewards />
       </View>
     </MainLayout>
   );
@@ -24,6 +27,13 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: palette.backgroundGrey,
+    borderTopLeftRadius: 50,
+    borderTopRightRadius: 50,
+    flex: 1,
+    flexDirection: "column",
+    alignItems: "center",
+    paddingBottom: 20,
+    paddingTop: 20,
   },
 });
 

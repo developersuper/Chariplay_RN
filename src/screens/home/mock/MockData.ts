@@ -1,32 +1,90 @@
-export default [
+import {
+  IGameCategory,
+  IRecommendedGame,
+  IMassiveRewards,
+} from "shared/constants/types";
+
+export const gameCategories: Array<IGameCategory> = [
   {
-    name: "React Native Dynamic Search Bar",
-    description:
-      "Dynamic fully customizable search bar for both iOS and Android",
-    language: "Typescript",
-    star: 342,
-    fork: 152,
+    label: "Adventure",
+    value: "1",
   },
   {
-    name: "React Native Bouncy Checkbox",
-    description: "Fully customizable animated bouncy checkbox",
-    language: "Typescript",
-    star: 272,
-    fork: 22,
+    label: "Racing",
+    value: "2",
   },
   {
-    name: "React Native Apple Card Views",
-    description:
-      "Customizable and perfect clone of Apple, App Store Card Views",
-    language: "Typescript",
-    star: 266,
-    fork: 22,
+    label: "Role-Playing",
+    value: "3",
   },
   {
-    name: "React Native Header View",
-    description: "Fully customizable Header View with multiple design options ",
-    language: "Typescript",
-    star: 412,
-    fork: 28,
+    label: "MMORPG",
+    value: "4",
+  },
+  {
+    label: "Puzzle",
+    value: "5",
+  },
+  {
+    label: "Strategy",
+    value: "6",
+  },
+  {
+    label: "Fun",
+    value: "7",
+  },
+  {
+    label: "Card Games",
+    value: "8",
+  },
+  {
+    label: "Battle",
+    value: "9",
+  },
+  {
+    label: "Calming",
+    value: "10",
+  },
+];
+
+export const recommended: Array<IRecommendedGame> = [
+  {
+    image: require("@assets/img/rec1.png"),
+    title: "Space Cowboy 2340",
+    desc: "Astronomical exploration of the universe.",
+    status: "CHRY | RTP 92%",
+  },
+  {
+    image: require("@assets/img/rec2.png"),
+    title: "Genesis",
+    desc: "The beginning of the end of the world.",
+    status: "CHRY | 97%",
+  },
+  {
+    image: require("@assets/img/rec1.png"),
+    title: "Space Cowboy 23401",
+    desc: "Astronomical exploration of the universe.",
+    status: "CHRY | RTP 92%",
+  },
+  {
+    image: require("@assets/img/rec2.png"),
+    title: "Genesis2",
+    desc: "The beginning of the end of the world.",
+    status: "CHRY | 97%",
+  },
+];
+
+export const massiveRewards: Array<IMassiveRewards> = [
+  {
+    image: require("@assets/img/mr1.png"),
+  },
+  {
+    image: require("@assets/img/mr2.png"),
+  },
+  {
+    image: require("@assets/img/mr1.png"),
+  },
+  {
+    image: require("@assets/img/mr2.png"),
   },
 ];
